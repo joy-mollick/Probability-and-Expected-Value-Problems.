@@ -1,3 +1,12 @@
+
+/*
+ Every number ai ,in the set of length n.How many times ai can be maximum ?
+ (ai)^n-(ai-1)^n .
+  So ,the probability of ai being maximum is  (ai)^n-(ai-1)^n / (m^n)  = (ai/m)^n-(ai-1/m)^n=Pi 
+  Now expected value is summation of Pi*i for i =1 to m.
+*/
+
+
 #include<bits/stdc++.h>
 
 using namespace std;
