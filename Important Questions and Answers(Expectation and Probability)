@@ -1,0 +1,379 @@
+1. What is the expected number of coin flips for getting a head?
+
+Ans:
+Let the expected number of coin flips be x. Then we can write an equation for it -
+a. If the first flip is the head, then we are done. The probability of this event is 1/2 and the number of coin flips for this event is 1.
+b. If the first flip is the tails, then we have wasted one flip. Since consecutive flips are independent events, the solution in this case can be recursively framed in terms of x - The probability of this event is 1/2 and the expected number of coins flips now onwards is x. But we have already wasted one flip, so the total number of flips is x+1.
+
+The expected value x is the sum of the expected values of these two cases. Using the rule of linerairty of the expectation and the definition of Expected value, we get
+
+x = (1/2)(1) + (1/2) (1+x)
+Solving, we get x = 2.
+
+Thus the expected number of coin flips for getting a head is 2.
+
+2. What is the expected number of coin flips for getting two consecutive heads?
+
+Let the expected number of coin flips be x. The case analysis goes as follows:
+a. If the first flip is a tails, then we have wasted one flip. The probability of this event is 1/2 and the total number of flips required is x+1
+b. If the first flip is a heads and second flip is a tails, then we have wasted two flips. The probability of this event is 1/4 and the total number of flips required is x+2
+c. If the first flip is a heads and second flip is also heads, then we are done. The probability of this event is 1/4 and the total number of flips required is 2.
+
+Adding, the equation that we get is -
+x = (1/2)(x+1) + (1/4)(x+2) + (1/4)2
+
+Solving, we get x = 6.
+
+Thus, the expected number of coin flips for getting two consecutive heads is 6.
+
+3. (Generalization) What is the expected number of coin flips for getting N consecutive heads, given N?
+
+Let the exepected number of coin flips be x. Based on previous exercises, we can wind up the whole case analysis in two basic parts
+
+a) If we get 1st, 2nd, 3rd,...,n'th tail as the first tail in the experiment, then we have to start all over again.
+b) Else we are done.
+
+For the 1st flip as tail, the part of the equation is (1/2)(x+1)
+For the 2nd flip as tail, the part of the equation is (1/4)(x+2)
+...
+For the k'th flip as tail, the part of the equation is (1/(2k))(x+k)
+...
+For the N'th flip as tail, the part of the equation is (1/(2N))(x+N)
+The part of equation corrresponding to case (b) is (1/(2N))(N)
+
+Adding,
+
+x = (1/2)(x+1) + (1/4)(x+2) + ... + (1/(2^k))(x+k) + .. + (1/(2^N))(x+N) + (1/(2^N))(N)
+
+Solving this equation is left as an exercise to the reader. The entire equation can be very easily reduced to the following form:
+
+x = 2^N+1-2
+
+Thus, the expected number of coin flips for getting N consecutive heads is (2N+1 - 2).
+
+
+4.Candidates are appearing for interview one after other. Probability of each candidate getting selected is 0.16. What is the expected number of candidates that you will need to interview to make sure that you select somebody?
+
+This is very similar to Q1, the only difference is that in this case the coin is biased. (The probability of heads is 0.16 and we are asked to find number of coin flips for getting a heads).
+Let x be the expected number of candidates to be interviewed for a selection. The probability of first candidate getting selected is 0.16 and the total number of interviews done in this case is 1. The other case is that the first candidate gets rejected and we start all over again. The probability for that is (1-0.16)*(x+1). The equation thus becomes -
+
+x = 0.16 + (1-0.16)*(x+1)
+
+Solving, x = 1/0.16, i.e. x = 6.25
+
+
+5.(Generalized version of Q4) - The queen of a honey bee nest produces offsprings one-after-other till she produces a male offspring. The probability of produing a male offspring is p. What is the expected number of offsprings required to be produced to produce a male offspring?
+
+This is same as the previous question, except that the number 0.16 has been replaced by p. Observe that the equation now becomes -
+
+x = p + (1-p)*(x+1)
+Solving, x = 1/p
+
+Thus, observe that in the problems where there are two events, where one event is desirable and other is undesirable, 
+and the probability of desirable event is p, then the expected number of trials done to get the desirable event is 1/p
+
+Generalizing on the number of events - If there are K events, where one event is desirable and all others are undesirable, 
+and the probability of desirable event is p, then also the expected number of trials done to get the desirable event is 1/p.
+
+
+6.what is the expected number of dice throws required to get a "four"?
+
+Let the expected number of throws be x. 
+The desirable event (getting 'four') has probability 1/6 (as each face is equiprobable). 
+There are 5 other undesirable events (K=5). 
+Note that the value of the final answer doesnot depend on K. 
+The answer is thus 1/(1/6) i.e. 6.
+
+
+7.A fair coin flip experiment is carried out N times. What is the expected number of heads?
+
+Consider an experiment of flipping a fair coin N times and 
+let the outcomes be represented by the array Z = {a1, a2,... ,an} where each ai is either 1 or 0 depending on whether the outcome was heads or tails respectively. 
+In other words, for each i we have -
+
+ai = if the i'th experiment gave head then 1 else 0.
+
+Hence we have:
+number of heads in z = a1+ a2 + ... + an
+Hence E[number of heads in z] = E[a1+ a2 + ... + an]
+= E[a1] + E[a2] + ... + E[an]
+
+Since ai corresponds to a coin-toss experiment, the value of E[ai] is 0.5 for each i. 
+Adding this n times, the expected number of heads in Z comes out to be n/2.
+
+
+8.(Bernaulli Trials) n students are asked to choose a number from 1 to 100 inclusive. What is the expected number of students that would choose a single digit number?
+
+This question is based on the concept of bernaulli trials.An experiment is called a bernaulli trial if it has exactly two outcomes, one of which is desired. For example - flipping a coin,  selecting a number from 1 to 100 to get a prime, rolling a dice to get 4 etc. 
+The result of a bernaulli trial can typically be represented as "yes/no" or "success/failure". 
+We have seen in Q5 above that if the probability of success of a bernaulli trial is p then the expected number of trials to get a success is 1/p. is
+
+This question is based on yet another result related to bernaulli trials - 
+If the probability of a success in a bernaulli trial is p then the expected number of successes in n trials is n*p.
+The proof is simple -
+
+The number of successes in n trials = (if 1st trial is success then 1 else 0) + ... + (if nth trial is success then 1 else 0)
+The expected value of each bracket is  1*p + 0*(1-p) = p. 
+Thus the expected number of successes in n trials is n*p.
+
+In the current case, "success" is defined as the experiment that chooses a single digit number. 
+Since all choices are equiprobable, the probability of success is 9/100. 
+(There are 9 single digit numbers in 1 to 100). 
+Since there are n students, the expected number of students that would contribute to success (i.e the expected number of successes) is n*9/100.
+
+
+9. What is the expected number of coin flips to ensure that there are atleast N heads?
+
+The solution can easily be framed in a recursive manner -
+
+N heads = if 1st flip is a head then N-1 more heads, else N more heads.
+The probability of 1st head is 1/2. Thus
+
+E[N] = (1/2)(E[N-1]+1)+ (1/2)(E[N] + 1)
+Note that each term has 1 added to it to account for the first flip.
+
+The base case is when N = 1 :
+E[1] = 2 (As discussed in Q2)
+
+Simplifying the recursive case,
+E[N] = (1/2)( E[N-1] +1 + E[N] + 1)
+= (1/2)( E[N-1] + E[N] + 2)
+=> 2 * E[N] = ( E[N-1] + E[N] + 2)
+=> E[N] = E[N-1] + 2
+
+Since E[1] = 2, E[2] = 4, E[3] = 6,..., in general E[N] = 2N. 
+Thus, the expected number of coin flips to ensure that there are atleast N heads in 2N.
+
+10. Now an important generalization (like above question) 
+
+What is the expected number of bernaulli trials to ensure that there are atleast N successes, if the probability of each success is p?
+
+The recursive equation in this case is -
+
+E[N] = p(E[N-1]+1)+ (1- p)(E[N] + 1)
+
+Solving, E[N]-E[N-1] = p. Writing a total of N-1 equations:
+
+E[N]-E[N-1] = 1/p
+E[N-1]-E[N-2] = 1/p
+E[N-2]-E[N-3] = 1/p
+...
+E[2]-E[1] = 1/p
+
+Adding them all, E[N] - E[1] = (n-1)/p. But E[1] is 1/p (lemma -1). Hence E[N] = n/p.
+
+Moral: If probability of success in a bernaulli trial is p, then the expected number of trials to guaranttee N successes is N/p.
+
+11.
+A bag contains 20 books out of which 5 are defective. 
+If 3 of the books are selected at random and removed from the bag in succession without replacement then what is the probability that all three books are defective?
+
+The choosing three defective books from 5 defective books in 5 c 3 = 10 ways.
+The choosing three from total 20 books in the total 20 c 3 = 1140 .
+So the probability of those three books being defective is 10/1140 = 1/114. 
+This is our answer = 1/114.
+
+12.
+If a coin is tossed 4 times, then what is the probability of getting a Zero times head?
+
+Zero times head makes sense to get only tails in 4 times . So, probability of getting tails is 1/2. 
+4 times toss gives you the probability of getting all tails is (1/2)*(1/2)*(1/2)*(1/2) = 1/16. This is your required answer
+
+
+13.What is the probability of getting 5 at least once if two dice are thrown simultaneously?
+
+So, first let find probability for not getting 5 for one dice is 5/6.
+
+So, for two dice thrown simultaneously the probability of not getting 5 in both dice will be (5/6)*(5/6) = (25/36)
+
+So, at least one dice faces 5 one its throw is 1-(25/36) = 11/36, 
+This is the probability for getting 5 at least once if two dice are thrown simultaneously.
+
+
+14.Roll two dice for infinite times, what is the prob that you get a sum of 4 before a sum of 2?
+The question at a glance seems different but not. 
+Here possible ways of getting sum 4 is (1+3, 3+1, 2+2) and 
+one possible way of getting 2 (1+1).
+
+Now, there are total 4 ways to get 4 or 2.
+
+Among these two (4 or 2) One can get four(4) before two (2), is at 3/4 = 0.75 probability.
+
+
+15.If I toss a fair coin 400 times, what is the probability that I would get 220 heads?
+
+The probability of getting head in one toss is 1/2.
+
+The probability of not getting head in one toss is also 1/2.
+
+So, for 220 heads the probability is (1/2)^220. 
+And more 180 tosses are remaining which will not give head so, non getting head probability is (1/2)^180.
+
+Now, total probability of getting 220 heads among 400 times is (1/2)^180 * (1/2) ^220 = (1/2)^400
+
+Now, the ways you can choose those 220 heads among 400 tosses or 180 non-head (tails) from 400 tosses are 400C220 = 400C180.
+
+
+16.A bag contains 5 white and 3 black balls. Four balls are successively drawn out without replacement. What is the probability that they are alternately of different colours?
+First we can think about the ways to take four balls which are of alternately different colours. There can be two case like this, ( without replacement )
+
+B W B W
+
+= 3 * 5 * 2 * 4
+
+= 120
+
+First take one black ball from three black balls, it can be in 3 ways, 
+then taking one white ball from the 5 white ball and it can be in 5 ways. 
+As without replacement holds, next 2 black balls are remaining. So taking another black ball can be in two ways.
+And in the last, there are 4 white balls are remaining. So, another white ball can be taken in 4 ways. Total ways = 3*5*2*4 =120
+
+Now, starting may be with white ball. So,
+
+W B W B
+
+= 5*3*4*2 =120, in same way as described above.
+
+So, there are 120+120 =240 expexted ways.
+
+Now, the total ways are taking the 4 balls randomly from total (5+3) = 8 balls, without replacement.
+
+Total ways = 8*7*6*5 = 1680
+
+So, our probability is proportion of expected outcome ways to total ways = 240 / 1680 =0.142
+
+Probability is 14.2% approximately.
+
+
+17.In how many ways can I colour the six faces of a cube with six different colours?(Important topic)
+A cube has six faces.
+
+Assume there are 6 colours a b c d e f
+
+Now first hold a face of a cube and colour this face with a colour say a. Now the exact opposite of this face can be coloured by any one of the b c d e f colours. There are 5 ways.After colouring the second one, now 4 colours are available.
+
+Without these two faces other four faces are remaining in a circular form. Now question is in how many ways 4 colour can be put in the circular 4 position? Obviously (4–1)! ways.
+
+So, total ways 5 * ( 4 - 1)! = 30 ways
+
+
+18.If there is a 20% chance of rain each day in a week, what is the probability of it raining at least once?
+
+20% chance (probability) of raining in each day .So, not raining probability is 100%-20% =80%. 80/100 =4/5. 
+Now, think about probability of not raining in seven days (4/5)^7. So, the at least one day raining probability is 1- (4/5)^7.
+
+
+19.You have 6 ordinary coins. What is the probability that, whem fliped simultaneously you will have exactly three heads and three tails showing?
+Here what is the probability of getting any permutation of HHHTTT ( Three heads and three tails) .
+
+Now, head probability is 1/2
+
+Tails probability is 1/2
+
+So, three head and three tails probability P is (1/2)^3 * (1/2)^3 = (1/2) ^ 6 =(1/64)
+
+Now, this is probability is for all permutation of HHHTTT. Permutation of this 6! / (3!*3!) = 20
+
+Total probability is 20* (1/64) [20*P ]
+
+Ans = 20/64.
+
+
+20.What is the expected number of five you will see when a fair die is thrown 200 times?
+The probability of Getting five is 1/6. When thrown is 200 times then expected number of getting five is 200* 1/6 = 100/3 .
+
+21.What's the expected number of rolls until you roll the first 1?
+For rolling a die, we have to find out the expected number of getting 1. I think, this question seems to be like this.
+
+So, x is the expected number of getting 1. If first time we get 1, then number of event is 1 and probability 1/6. Then, if 1 is not the first case - then we have lost one roll so, now needed roll is (1+x) and getting other numbers (not 1) probability is 5/6
+
+So, x = 1/6 + 5/6*(1+x)
+
+x = 6.
+
+Expected number is 6.
+
+
+22.A coin is tossed until a head appears, what is the expected number of tosses?
+Let's X is the expected number of tosses until getting one head.
+
+Now, if first is head, then probability is 1/2 and event number is 1.
+
+When first attempt is tails then one trial is lost now, then expected number of getting head is (1+x). Probability is 1/2.
+
+X = 1/2 + 1/2 (1+x)
+
+X =2.
+
+Ans is 2.
+
+Now, think about it another way, getting head probability is 1/2. 
+So, How much event is needed to make this probability 1? 
+So, obviously by two times, we can expect one head 1/2 *2 = 1. 
+So, we can expect 1 head by two coin flips, this is our expected number actually.
+
+
+23.In a race, the probabilities of A and B winning are 1/3 and 1/6 respectively. What is the probability that neither of them wins?
+Probability of win of A, P(A) = 1/3 Probability of win of B, P (B) =1/6.
+The probability of winning of either A or B will be (1/6+1/3) = (3/6) = (1/2).
+The probability of that neither of them wins =1- (1/2) =1/2
+
+24.What is the probability that out of a group of three people, at least two will have the same birthday? Assuming that no one has birthday on 29 February.
+Among three people, assume that no one has same birthday, so probability is P = 365*364*363/(365)^3 = 364*363/365^2 .
+So, at least two have same birthday probability will be Pc = 1- P = 1- (364*363/365^2) = (365^2- 364*363) /(365^2).
+
+
+25.The probability that a ship safely reaches a port is 1/3.
+What is the probability that out of 5 ships at least 4 ships would arrive safely?
+
+A ship safely reached is denoted by S
+
+A ship safely not reached is denoted by U
+
+Safely reached probability 1/3
+
+Safely not reached probability 1-(1/3) = 2/3
+
+At least four ships would arrive safely, So these two cases can be our expected cases
+
+S S S S U (at least 4 ship safely)
+
+(1/3)*(1/3)*(1/3)*(1/3)*(2/3) =(1/3)^4*(2/3)=(2/243) [ We have to choose 4 ships from 5 ships so 5C4 (=5) will be multiplied by (2/243) ] Then, 5* (2/243) = 10/243.
+
+S S S S S (5 ships safely reaches)
+
+(1/3)^5 = 1/243 [ choose 5 ships from 5 is 5C5 (=1) ]Then, 1* 1/243 =1/243.
+
+Total possibilities (1/243)+(10/243) = 11/243 = 0.045 approximately.
+
+
+26.When two dice are thrown simultaneously, what is the probability that the sum of the two numbers that turn up is less than 11?
+Now think about the outcomes which will make sum equal or greater than 11.
+
+5–6
+
+6–5
+
+6–6
+
+Total outcomes of two dice throw (6*6) = 36.
+
+Our expected outcomes of getting sum equal or greater than 11 is 3.
+
+Now, the probability of getting sum equal or greater than 11 is 3/36 = 1/12.
+
+Now, probability of getting sum less than 11 will be 1- (1/12) = 11/12.
+
+
+27.What is the probability that two consecutive numbers will appear in the simultaneous roll of two dice?
+So, the probable expected outcomes are listed below : 1,2  2,1  2,3  3,2  3,4  4,3  4,5  5,4  5,6  6,5.
+Total possible expected outcomes are 10 
+And, Total ways is (6*6) =36 So, probability is (10/36) = (5/18) =0.278.
+
+28.What is the probability that when a coin is tossed 5 times, we will get exactly 4 heads?
+
+It's very simple. 5 times toss will give you the probability (1/2 *1/2*1/2*1/2*1/2) = 1/32. 4 heads and 1 tail -> hhhht here is total permutation is (5! /4!) = (5) for each permutation there is probability of 1/32. 
+So, total probability is 5* (1/32) = 5/32.
+
+
+Source:Codechef and my answers to some questions in quora .
